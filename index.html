@@ -2,60 +2,166 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tabla de Versiones Bootstrap</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tabla de Versiones Bootstrap</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="container col-lg-10 p-4 my-5 border border-2 rounded-4 shadow">
-        <div class="table-responsive">
-            <table class="table table-responsive">
-                <thead class="text-center">
-                    <tr>
-                        <th>Versión</th>
-                        <th>Fecha</th>
-                        <th>Resumen</th>
-                        <th>Archivos</th>
-                        <th>Detalles</th>
-                        <th>Conf.</th>
-                    </tr>
-                </thead>
-                <tbody class=" table-group-divider">
-                <tr>
-                    <td>1.6.16</td>
-                    <td>22/03/23</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, odit? Cupiditate voluptates,
-                        aliquid, iusto ratione vel nihil nulla natus recusandae praesentium autem ex quas, veritatis
-                        illum optio sapiente. Rerum, vero.</td>
-                    <td class="text-nowrap"><button type="button" class="btn btn-outline-primary">Ver Archivo</button></td>
-                    <td class="text-nowrap"><button type="button" class="btn btn-outline-success">Ver Detalles</button></td>
-                    <td class="text-nowrap"><button type="button" class="btn btn-outline-secondary">Ver Conf.</button></td>
-                </tr>
-                <tr>
-                    <td>1.7.0</td>
-                    <td>15/05/23</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea corporis ipsam quidem facere
-                        debitis quae ipsum explicabo deleniti voluptatem commodi praesentium optio blanditiis fugit sint
-                        repellat culpa assumenda, perferendis minima!</td>
-                    <td class="text-nowrap"><button type="button" class="btn btn-outline-primary">Ver Archivo</button></td>
-                    <td class="text-nowrap"><button type="button" class="btn btn-outline-success">Ver Detalles</button></td>
-                    <td class="text-nowrap"><button type="button" class="btn btn-outline-secondary">Ver Conf.</button></td>
-                </tr>
-                </tbody>
-            </table>
-        </div class="table-responsive">
-    </div>
+	<div class="container my-3 d-flex flex-column gap-3">
+		<div class="p-4 mx-auto border border-2 rounded-4 shadow">
+			<div class="table-responsive">
+				<table id="myTable" class="table table-responsive">
+					<thead class="text-center">
+						<tr>
+							<th>Versión</th>
+							<th>Fecha</th>
+							<th>Resumen</th>
+							<th>Archivos</th>
+							<th>Detalles</th>
+							<th>Conf.</th>
+						</tr>
+					</thead>
+					<tbody class=" table-group-divider">
+						<tr>
+							<td>1.6.16</td>
+							<td>22/03/23</td>
+							<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, odit? Cupiditate
+								voluptates,
+								aliquid, iusto ratione vel nihil nulla natus recusandae praesentium autem ex quas,
+								veritatis
+								illum optio sapiente. Rerum, vero.</td>
+							<td class="text-nowrap">
+								<button type="button" class="btn btn-outline-primary" onclick="verArchivos(1)">Ver Archivos</button>
+							</td>
+							<td class="text-nowrap">
+								<button type="button" class="btn btn-outline-success" onclick="verDetalles(1)">Ver Detalles</button>
+							</td>
+							<td class="text-nowrap">
+								<button type="button" class="btn btn-outline-secondary" onclick="verConfiguracion(1)">Ver Conf.</button>
+							</td>
+						</tr>
+						<tr>
+							<td>1.7.0</td>
+							<td>15/05/23</td>
+							<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea corporis ipsam quidem
+								facere
+								debitis quae ipsum explicabo deleniti voluptatem commodi praesentium optio blanditiis
+								fugit
+								sint
+								repellat culpa assumenda, perferendis minima!</td>
+							<td class="text-nowrap">
+								<button type="button" class="btn btn-outline-primary" onclick="verArchivos(2)">Ver Archivos</button>
+							</td>
+							<td class="text-nowrap">
+								<button type="button" class="btn btn-outline-success" onclick="verDetalles(2)">Ver Detalles</button>
+							</td>
+							<td class="text-nowrap">
+								<button type="button" class="btn btn-outline-secondary" onclick="verConfiguracion(2)">Ver Conf.</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- Card Archivo -->
+		<div class="card col-lg-10  w-100 mx-auto border border-2 rounded-4 shadow d-none">
+		<!-- <div class="card w-100 mx-auto border border-2 rounded-4 shadow"> -->
+			<div class="card-header py-3">
+				<span id="version-title"></span>
+			</div>
+			<div class="card-body">
+				<h5 id="category-title" class="card-title"></h5>
+				<div class="card-text">
+					
+					<!-- Archivos-->
+					<div id="archivos-content" class="d-none">
+						<ol class="list-group list-group-numbered list-group-flush">
+							<li class="list-group-item"><a target="_blank" href="files/file1.js">Archivo 1</a></li>
+							<li class="list-group-item"><a target="_blank" href="files/file2.css">Archivo 2</a></li>
+							<li class="list-group-item"><a target="_blank" href="files/file3.html">Archivo 3</a></li>
+						</ol>
+					</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-        </script>
+					<!-- Detalles -->
+					<div id="detalles-content" class="d-none">
+						<ol class="list-group list-group-numbered list-group-flush">
+							<li class="list-group-item">Lorem ipsum dolor sit amet, consectetur
+								adipisicing elit. Molestiae quaerat dignissimos et reprehenderit, delectus perspiciatis provident a!
+								Quibusdam quo quos inventore ipsa animi, debitis nam delectus vero distinctio reiciendis incidunt!
+							</li>
+							<li class="list-group-item">Lorem ipsum dolor sit amet, consectetur
+								adipisicing elit. Molestiae quaerat dignissimos et reprehenderit, delectus perspiciatis provident a!
+								Quibusdam quo quos inventore ipsa animi, debitis nam delectus vero distinctio reiciendis incidunt!
+							</li>
+							<li class="list-group-item">Lorem ipsum dolor sit amet, consectetur
+								adipisicing elit. Molestiae quaerat dignissimos et reprehenderit, delectus perspiciatis provident a!
+								Quibusdam quo quos inventore ipsa animi, debitis nam delectus vero distinctio reiciendis incidunt!
+							</li>
+						</ol>
+					</div>
 
-    <script src="script.js"></script>
+					<!-- Configuracion -->
+					<div id="configuracion-content" class="d-none">
+					<!-- <div id="configuracion-content"> -->
+						<div class="accordion mt-3" id="accordionExample">
+							<div class="accordion-item mb-3 border ">
+								<h2 class="accordion-header">
+									<button class="accordion-button collapsed bg-secondary-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+										aria-expanded="true" aria-controls="collapseOne">
+										file1.js
+									</button>
+								</h2>
+								<div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+									<div class="accordion-body p-3">
+										<!-- body -->
+										<p class="bg-red"></p>
+									</div>
+								</div>
+							</div>
+							<div class="accordion-item mb-3 border ">
+								<h2 class="accordion-header">
+									<button class="accordion-button collapsed bg-secondary-subtle" type="button" data-bs-toggle="collapse"
+										data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+										file2.css
+									</button>
+								</h2>
+								<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+									<div class="accordion-body">
+										<!-- body -->
+									</div>
+								</div>
+							</div>
+							<div class="accordion-item mb-3 border ">
+								<h2 class="accordion-header">
+									<button class="accordion-button collapsed bg-secondary-subtle" type="button" data-bs-toggle="collapse"
+										data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+										file3.html
+									</button>
+								</h2>
+								<div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+									<div class="accordion-body">
+										<!-- body -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+		</script>
+
+	<script src="script.js"></script>
 </body>
 
 </html>

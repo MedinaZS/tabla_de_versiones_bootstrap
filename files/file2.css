@@ -1,0 +1,23 @@
+* {
+    fontfamily: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sansserif
+}
+
+.formlabel {
+    color: #bf903b
+}
+
+.formcheckinput {
+    width: 100%;
+    padding: 1.125rem 0;
+
+}
+
+.formlabel2 {
+    color: #bf903b
+}
+
+.formcheckinput2 {
+    width: 100%;
+    padding: 1.125rem 0;
+
+}

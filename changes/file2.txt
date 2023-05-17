@@ -1,0 +1,23 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
++ .form-label {
++     color: #bf903b
++ }
+
+.form-check-input {
+    width: 100%;
+    padding: 1.125rem 0;
+
+}
+
+- .form-label2 {
+-     color: #bf903b
+- }
+
++ .form-check-input2 {
++     width: 100%;
++     padding: 1.125rem 0;
++ 
++ }
