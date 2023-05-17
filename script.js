@@ -5,8 +5,53 @@ const contentCard = document.querySelector(".card-text")
 const table = document.querySelector("#myTable");
 
 
-let getVersion = (row) => {
-    return "Versión " + table.rows[row].querySelector("td").innerHTML
+// Evento botones 
+let buttonsArchivos = document.querySelectorAll(".btn-archivos")
+let buttonsDetalles = document.querySelectorAll(".btn-detalles")
+let buttonsConfiguracion = document.querySelectorAll(".btn-configuracion")
+
+buttonsArchivos.forEach(button => {
+    button.addEventListener("click", () => {
+        let parentRow = button.parentElement.parentElement
+        verArchivos(parentRow)
+    })
+});
+
+buttonsDetalles.forEach(button => {
+    button.addEventListener("click", () => {
+        let parentRow = button.parentElement.parentElement
+        verDetalles(parentRow)
+    })
+});
+
+buttonsConfiguracion.forEach(button => {
+    button.addEventListener("click", () => {
+        let parentRow = button.parentElement.parentElement
+        verConfiguracion(parentRow)
+    })
+});
+
+
+let verArchivos = (parentRow) => {
+    showCard();
+    versionTitle.innerHTML = getVersion(parentRow)
+    categoryTitle.innerHTML = "Arhivos"
+    document.querySelector("#archivos-content").classList.remove("d-none")
+}
+
+let verDetalles = (parentRow) => {
+    showCard();
+    versionTitle.innerHTML = getVersion(parentRow)
+    categoryTitle.innerHTML = "Detalles"
+    document.querySelector("#detalles-content").classList.remove("d-none")
+}
+
+let verConfiguracion = async (parentRow) => {
+    showCard();
+    versionTitle.innerHTML = getVersion(parentRow)
+    categoryTitle.innerHTML = "Configuración"
+    await fetchFile() //Fetch text of external files
+    document.querySelector("#configuracion-content").classList.remove("d-none")
 }
 
 let showCard = () => {
@@ -17,44 +62,15 @@ let showCard = () => {
     document.querySelector("#configuracion-content").classList.add("d-none")
 }
 
-let verArchivos = (row) => {
-    // Show card
-    showCard();
-
-    versionTitle.innerHTML = getVersion(row)
-    categoryTitle.innerHTML = "Arhivos"
-    document.querySelector("#archivos-content").classList.remove("d-none")
-}
-
-let verDetalles = (row) => {
-    // Show card
-    showCard();
-
-    versionTitle.innerHTML = getVersion(row)
-    categoryTitle.innerHTML = "Detalles"
-    document.querySelector("#detalles-content").classList.remove("d-none")
-}
-
-let verConfiguracion = async (row) => {
-    // Show card
-    showCard();
-
-    versionTitle.innerHTML = getVersion(row)
-    categoryTitle.innerHTML = "Configuración"
-
-    await fetchFile()
-
-    document.querySelector("#configuracion-content").classList.remove("d-none")
-
+let getVersion = (row) => {
+    return "Versión " + row.querySelector("td").innerHTML
 }
 
 let fetchFile = async () => {
     // First File
     let response = await fetch('http://localhost:5500/changes/file1.txt');
     let data = await response.text();
-
     let databg = await addBackground(data);
-
     document.querySelector("#collapseOne .accordion-body").innerHTML = databg;
 
     //Second File
@@ -76,8 +92,7 @@ let addBackground = async (data) => {
     var txt = ''
 
     for (let [i, value] of lines.entries()) {
-        // Replace spaces 
-        console.log(value)
+        // Replace all spaces 
         value = value.replaceAll(' ', '&ensp;');
         // Replace symbol <> to show plain text
         value = value.replaceAll('<', '&lt;');
@@ -90,8 +105,7 @@ let addBackground = async (data) => {
         } else {
             txt += "<p class='m-0'>" + value + "</p>"
         }
-
     }
-
     return txt;
 }
+
