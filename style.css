@@ -2,6 +2,32 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
-#content{
+#content {
     height: 100vh;
+    overflow: auto;
 }
+
+#side-content {
+    width: fit-content;
+}
+
+
+/* Height of sidebar segun tamaño de pantalla */
+/* Xtra small screen */
+@media only screen and (max-width: 576px) {
+    #sidebar>div:first-child {
+        height: 100%;
+    }
+    #content{
+        overflow: visible;
+    }
+    
+}
+
+@media only screen and (min-width: 576px) {
+    #sidebar>div:first-child {
+        height: 100vh;
+    }
+}
+
+
