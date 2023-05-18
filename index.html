@@ -13,14 +13,26 @@
 
 <body>
 	<div class="container-fluid">
-		<div class="row">
+		<div id class="row">
 
 			<!-- Sidebar -->
 			<div id="sidebar" class="col-lg-2 col-md-3 col-sm-2 px-sm-2 bg-dark">
 				<!-- Agregar min-vh-100 si se quiere tener menu del user (ahora esta personalizado en css) -->
-				<div
-					class="d-flex flex-column align-items-start align-items-sm-center align-items-md-start px-3 pt-2 text-white">
+				<div id="min-content" class="d-none d-flex justify-content-between align-items-start border-bottom">
+					<div 
+						class="w-100 d-flex justify-content-between justify-content-md-center align-items-start border-bottom">
+						<a href="/"
+							class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none d-inline d-sm-none">
+							<span class="fs-5">Menu</span>
+						</a>
+						<a id="btn-open-sidebar" href="javascript:void(0)" class="text-white">
+							<i class="fs-4 bi-list"></i>
+						</a>
+					</div>
+				</div>
 
+				<div id="max-content"
+					class="d-flex flex-column align-items-start align-items-sm-center align-items-md-start px-3 pt-2 text-white">
 					<!-- Menu -->
 					<div
 						class="w-100 d-flex justify-content-between justify-content-sm-center justify-content-md-between align-items-start border-bottom">
@@ -28,7 +40,7 @@
 							class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none ">
 							<span class="fs-5 d-inline d-sm-none d-md-inline">Menu</span>
 						</a>
-						<a id="btn-sidebar" href="javascript:void(0)" class="text-white">
+						<a id="btn-close-sidebar" href="javascript:void(0)" class="text-white">
 							<i class="fs-4 bi-list"></i>
 						</a>
 					</div>
@@ -49,7 +61,7 @@
 									class="nav-link text-white text-opacity-50 px-0 align-middle w-100 d-flex justify-content-between align-items-center">
 									<span>
 										<i class="fs-4 bi-speedometer2"></i>
-										<span class=" d-inline d-sm-none d-md-inline">Dashboard</span>
+										<span class="d-inline d-sm-none d-md-inline">Dashboard</span>
 									</span>
 									<i class="bi bi-caret-down-fill"></i>
 								</a>

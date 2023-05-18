@@ -2,6 +2,10 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
+#sidebar{
+    transition: all 1s;
+}
+
 #content {
     height: 100vh;
 }
@@ -14,7 +18,7 @@
 /* Height of sidebar segun tamaño de pantalla */
 /* Xtra small screen */
 @media only screen and (max-width: 576px) {
-    #sidebar>div:first-child {
+    #sidebar>div{
         height: 100%;
     }
 
@@ -24,7 +28,7 @@
 }
 
 @media only screen and (min-width: 576px) {
-    #sidebar>div:first-child {
+    #sidebar>div {
         height: 100vh;
     }
 }

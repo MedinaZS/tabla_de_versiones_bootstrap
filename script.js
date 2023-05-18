@@ -109,25 +109,25 @@ let addBackground = async (data) => {
     return txt;
 }
 
+// let navOpen = true;
+let sidebar = document.querySelector("#sidebar");
+let minContent = document.querySelector("#min-content");
+let maxContent = document.querySelector("#max-content");
 
-
-let navOpen = true;
-
-document.querySelector("#btn-sidebar").addEventListener("click",() => {
-    (navOpen) ? closeNav() : openNav() 
+document.querySelector("#btn-close-sidebar").addEventListener("click", () => {
+    showSideBar(false)
 })
 
+document.querySelector("#btn-open-sidebar").addEventListener("click", () => {
+    showSideBar(true)
+})
 
-/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
-function openNav() {
-    document.getElementById("sidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-    navOpen = true;
-}
+let showSideBar = (bool) => {
+    const classes = ['col-lg-2', 'col-md-3', 'col-sm-2'];
 
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-function closeNav() {
-    document.getElementById("sidebar").style.width = "";
-    document.getElementById("main").style.marginLeft = "0";
-    navOpen = false;
+    (bool) ? sidebar.classList.add(...classes) : sidebar.classList.remove(...classes)
+
+    document.querySelector("#sidebar").classList.toggle('col-sm-1');
+    document.querySelector("#max-content").classList.toggle('d-none');
+    document.querySelector("#min-content").classList.toggle('d-none');
 }
